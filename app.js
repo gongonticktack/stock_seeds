@@ -179,22 +179,25 @@ function initPalette() {
   const menu = document.getElementById("palette-menu");
   let currentIndex = -1;
 
-  // メニュー項目（4色ストライプ＋名前＋選択印）を全パレット分作る
+  // メニュー項目（名前行＋幅いっぱいの4色バー＋選択印）を全パレット分作る
   const items = PALETTES.map((p, i) => {
     const item = document.createElement("button");
     item.type = "button";
     item.className = "palette-item";
     item.setAttribute("role", "option");
-    item.appendChild(buildSwatch(p));
+    const head = document.createElement("span");
+    head.className = "palette-item-head";
     const name = document.createElement("span");
     name.className = "palette-item-name";
     name.textContent = p.name;
-    item.appendChild(name);
+    head.appendChild(name);
     const check = document.createElement("span");
     check.className = "palette-check";
     check.setAttribute("aria-hidden", "true");
     check.textContent = "✓";
-    item.appendChild(check);
+    head.appendChild(check);
+    item.appendChild(head);
+    item.appendChild(buildSwatch(p));
     item.addEventListener("click", () => {
       setPalette(i);
       closeMenu();
