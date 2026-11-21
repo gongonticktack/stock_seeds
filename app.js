@@ -14,6 +14,125 @@ const STATUS_LABELS = {
 
 let allRuns = [];
 let allPicks = [];
+let chartData = {};
+
+async function fetchChartData() {
+  try {
+    const res = await fetch("charts-data.json");
+    if (!res.ok) return {};
+    return await res.json();
+  } catch (e) {
+    return {};
+  }
+}
+
+function chartKeyFor(pick) {
+  if (pick.chart_key) return pick.chart_key;
+  if (pick.run_date && pick.ticker) return pick.run_date + "-" + pick.ticker;
+  return null;
+}
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function svgEl(tag, attrs, text) {
+  const node = document.createElementNS(SVG_NS, tag);
+  if (attrs) {
+    for (const name of Object.keys(attrs)) node.setAttribute(name, attrs[name]);
+  }
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function formatChartValue(v, currency) {
+  const text = Number(v).toLocaleString("ja-JP", { maximumFractionDigits: 2 });
+  if (currency === "JPY") return "¥" + text;
+  if (currency === "USD") return "$" + text;
+  return text;
+}
+
+function buildChart(pick) {
+  const key = chartKeyFor(pick);
+  if (!key) return null;
+  const data = chartData[key];
+  if (!data || !data.closes || data.closes.length < 2) return null;
+
+  const W = 320;
+  const H = 128;
+  const padTop = 16;
+  const padBottom = 16;
+  const padX = 6;
+  const plotW = W - padX * 2;
+  const plotH = H - padTop - padBottom;
+  let lo = Number(data.low);
+  let hi = Number(data.high);
+  if (!(hi > lo)) hi = lo + 1;
+  const pad = (hi - lo) * 0.04;
+  const yMin = lo - pad;
+  const yMax = hi + pad;
+  const n = data.closes.length;
+  const x = (i) => padX + (i / (n - 1)) * plotW;
+  const y = (v) => padTop + (1 - (v - yMin) / (yMax - yMin)) * plotH;
+
+  const svg = svgEl("svg", {
+    class: "chart-svg",
+    viewBox: "0 0 " + W + " " + H,
+    role: "img",
+    "aria-label": "5年チャート " + (pick.ticker || ""),
+  });
+
+  svg.appendChild(
+    svgEl("line", {
+      x1: padX,
+      x2: W - padX,
+      y1: y(hi),
+      y2: y(hi),
+      class: "chart-hl-line",
+    })
+  );
+  svg.appendChild(
+    svgEl("line", {
+      x1: padX,
+      x2: W - padX,
+      y1: y(lo),
+      y2: y(lo),
+      class: "chart-hl-line",
+    })
+  );
+  svg.appendChild(
+    svgEl(
+      "text",
+      { x: padX, y: 11, class: "chart-label" },
+      "高値 " + formatChartValue(hi, data.currency)
+    )
+  );
+  svg.appendChild(
+    svgEl(
+      "text",
+      { x: padX, y: H - 4, class: "chart-label" },
+      "安値 " + formatChartValue(lo, data.currency)
+    )
+  );
+
+  const points = data.closes
+    .map((v, i) => x(i).toFixed(1) + "," + y(Number(v)).toFixed(1))
+    .join(" ");
+  svg.appendChild(svgEl("polyline", { points: points, class: "chart-line" }));
+
+  const last = Number(data.closes[n - 1]);
+  const lx = x(n - 1);
+  const ly = y(last);
+  svg.appendChild(svgEl("circle", { cx: lx, cy: ly, r: 3, class: "chart-dot" }));
+  const labelY = Math.max(11, Math.min(H - 4, ly - 6));
+  svg.appendChild(
+    svgEl(
+      "text",
+      { x: lx - 5, y: labelY, class: "chart-label chart-label-last", "text-anchor": "end" },
+      formatChartValue(last, data.currency)
+    )
+  );
+
+  return svg;
+}
 
 async function fetchDirect() {
   const cfgRes = await fetch("config.json");
@@ -130,6 +249,9 @@ function buildCard(pick) {
     card.appendChild(range);
   }
 
+  const chart = buildChart(pick);
+  if (chart) card.appendChild(chart);
+
   if (pick.benefit) {
     const benefit = el("p", "card-benefit");
     benefit.appendChild(el("span", "benefit-label", "優待"));
@@ -242,6 +364,7 @@ function initSummary() {
 
 async function init() {
   const msg = document.getElementById("status-msg");
+  chartData = await fetchChartData();
   try {
     const data = await fetchPicks();
     allRuns = data.runs || [];

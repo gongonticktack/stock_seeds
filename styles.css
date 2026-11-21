@@ -289,6 +289,38 @@ main {
   color: #74560e;
   margin-right: 8px;
 }
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fbfdfe;
+}
+.chart-line {
+  fill: none;
+  stroke: var(--light);
+  stroke-width: 1.5;
+}
+.chart-hl-line {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  opacity: 0.55;
+}
+.chart-dot {
+  fill: var(--light);
+  stroke: #fff;
+  stroke-width: 1;
+}
+.chart-label {
+  font-size: 9px;
+  fill: var(--muted);
+}
+.chart-label-last {
+  fill: var(--main);
+  font-weight: 700;
+}
 .card-note {
   margin: 0;
   font-size: 0.88rem;
