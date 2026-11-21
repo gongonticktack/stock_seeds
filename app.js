@@ -159,22 +159,100 @@ function applyPalette(palette) {
   });
 }
 
+function buildSwatch(palette) {
+  const swatch = document.createElement("span");
+  swatch.className = "swatch";
+  swatch.setAttribute("aria-hidden", "true");
+  palette.colors.forEach((color) => {
+    const seg = document.createElement("span");
+    seg.style.background = color;
+    swatch.appendChild(seg);
+  });
+  return swatch;
+}
+
 function initPalette() {
-  const select = document.getElementById("palette-select");
-  PALETTES.forEach((p, i) => {
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    opt.textContent = p.name;
-    select.appendChild(opt);
+  const picker = document.getElementById("palette-picker");
+  const button = document.getElementById("palette-button");
+  const buttonSwatch = document.getElementById("palette-button-swatch");
+  const buttonName = document.getElementById("palette-button-name");
+  const menu = document.getElementById("palette-menu");
+  let currentIndex = -1;
+
+  // メニュー項目（4色ストライプ＋名前＋選択印）を全パレット分作る
+  const items = PALETTES.map((p, i) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "palette-item";
+    item.setAttribute("role", "option");
+    item.appendChild(buildSwatch(p));
+    const name = document.createElement("span");
+    name.className = "palette-item-name";
+    name.textContent = p.name;
+    item.appendChild(name);
+    const check = document.createElement("span");
+    check.className = "palette-check";
+    check.setAttribute("aria-hidden", "true");
+    check.textContent = "✓";
+    item.appendChild(check);
+    item.addEventListener("click", () => {
+      setPalette(i);
+      closeMenu();
+      button.focus();
+    });
+    menu.appendChild(item);
+    return item;
   });
+
+  function setPalette(index) {
+    currentIndex = index;
+    const palette = PALETTES[index];
+    applyPalette(palette);
+    // ボタンの表示（現在選択中のストライプと名前）を更新する
+    buttonSwatch.replaceChildren(...palette.colors.map((color) => {
+      const seg = document.createElement("span");
+      seg.style.background = color;
+      return seg;
+    }));
+    buttonName.textContent = palette.name;
+    items.forEach((item, i) => {
+      const selected = i === index;
+      item.classList.toggle("selected", selected);
+      item.setAttribute("aria-selected", String(selected));
+    });
+  }
+
+  function openMenu() {
+    menu.hidden = false;
+    button.setAttribute("aria-expanded", "true");
+    picker.classList.add("open");
+  }
+
+  function closeMenu() {
+    menu.hidden = true;
+    button.setAttribute("aria-expanded", "false");
+    picker.classList.remove("open");
+  }
+
+  button.addEventListener("click", () => {
+    if (menu.hidden) openMenu();
+    else closeMenu();
+  });
+  // 外側クリックで閉じる
+  document.addEventListener("click", (e) => {
+    if (!menu.hidden && !picker.contains(e.target)) closeMenu();
+  });
+  // Escで閉じる
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !menu.hidden) {
+      closeMenu();
+      button.focus();
+    }
+  });
+
   // アクセスごとにランダムで1つ選ぶ（前回の選択は保存・復元しない）
-  const initial = Math.floor(Math.random() * PALETTES.length);
-  select.value = String(initial);
-  applyPalette(PALETTES[initial]);
-  // プルダウンで選んだ場合はその訪問中だけ即時反映する
-  select.addEventListener("change", () => {
-    applyPalette(PALETTES[Number(select.value)]);
-  });
+  // ドロップダウンで選んだ場合はその訪問中だけ即時反映する
+  setPalette(Math.floor(Math.random() * PALETTES.length));
 }
 
 let allRuns = [];
