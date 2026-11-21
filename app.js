@@ -209,6 +209,9 @@ function initPalette() {
 
   function setPalette(index) {
     currentIndex = index;
+    try {
+      sessionStorage.setItem("appPaletteIndex", String(index));
+    } catch (e) {}
     const palette = PALETTES[index];
     applyPalette(palette);
     // ボタンの表示（現在選択中のストライプと名前）を更新する
@@ -253,9 +256,29 @@ function initPalette() {
     }
   });
 
-  // アクセスごとにランダムで1つ選ぶ（前回の選択は保存・復元しない）
-  // ドロップダウンで選んだ場合はその訪問中だけ即時反映する
-  setPalette(Math.floor(Math.random() * PALETTES.length));
+  // パレットの決め方:
+  // - 新規アクセス（外部から開いた）か、このページのリロードのときだけランダムに選び直す
+  // - アプリ内移動では sessionStorage に保存した選択（手動変更含む）を引き継ぐ
+  const navEntry = performance.getEntriesByType("navigation")[0];
+  const navType = navEntry ? navEntry.type : "navigate";
+  const fromSameApp =
+    !!document.referrer && document.referrer.startsWith(location.origin);
+  let savedPalette = null;
+  try {
+    savedPalette = sessionStorage.getItem("appPaletteIndex");
+  } catch (e) {}
+  if (navType === "reload" || !fromSameApp) savedPalette = null;
+  const savedIndex =
+    savedPalette === null ? NaN : parseInt(savedPalette, 10);
+  if (
+    Number.isInteger(savedIndex) &&
+    savedIndex >= 0 &&
+    savedIndex < PALETTES.length
+  ) {
+    setPalette(savedIndex);
+  } else {
+    setPalette(Math.floor(Math.random() * PALETTES.length));
+  }
 }
 
 let allRuns = [];
