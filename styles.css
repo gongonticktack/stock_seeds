@@ -1,17 +1,23 @@
 /* 株ピック記録
-   Color Hunt パレット: #222831 / #393E46 / #00ADB5 / #EEEEEE
-   メイン #222831 / サブ #393E46 / アクセント #00ADB5 / 背景は #EEEEEE 系から派生 */
+   配色は Color Hunt の4色パレットを JS（app.js の PALETTES）から
+   CSS変数へ適用して駆動する。パレット順の比重イメージは
+   メイン41% / サブ26% / ライト18% / アクセント15%（ヘッダーのストライプ）。
+   背景はパレットから導出し、最も明るい色を背景に固定しない。
+   :root の初期値は現行パレット #222831 / #393E46 / #00ADB5 / #EEEEEE。 */
 :root {
   --main: #222831;
   --sub: #393e46;
   --light: #00adb5;
   --accent: #eeeeee;
+  --accent-text: #b3261e;
   --bg: #f4f6f6;
   --surface: #ffffff;
   --surface-muted: #e9eded;
   --text: #222831;
   --muted: #5a636e;
   --border: #d5dbdd;
+  --on-main: #ffffff;
+  --header-sub: #c3ced1;
 }
 
 * { box-sizing: border-box; }
@@ -28,7 +34,7 @@ body {
 /* ヘッダー */
 .site-header {
   background: var(--main);
-  color: #fff;
+  color: var(--on-main);
 }
 .palette-stripe {
   display: flex;
@@ -50,7 +56,7 @@ body {
 }
 .header-sub {
   margin: 4px 0 0;
-  color: #c3ced1;
+  color: var(--header-sub);
   font-size: 0.95rem;
 }
 
@@ -117,7 +123,7 @@ main {
 }
 
 .status-msg {
-  color: #b3261e;
+  color: var(--accent-text);
   font-weight: 600;
 }
 
@@ -157,8 +163,14 @@ main {
   border-radius: 999px;
   white-space: nowrap;
 }
-.badge-value { background: #d3ecec; color: #0b6b70; }
-.badge-yutai { background: #f0e4cd; color: #74560e; }
+.badge-value {
+  background: color-mix(in srgb, var(--light) 22%, var(--surface));
+  color: color-mix(in srgb, var(--light) 55%, var(--text));
+}
+.badge-yutai {
+  background: color-mix(in srgb, var(--accent) 35%, var(--surface));
+  color: var(--accent-text);
+}
 
 .run-detail {
   background: var(--surface);
@@ -198,7 +210,7 @@ main {
   flex-direction: column;
   gap: 8px;
 }
-.card.kind-yutai { border-top-color: #c9a227; }
+.card.kind-yutai { border-top-color: var(--accent-text); }
 
 .card-head {
   display: flex;
@@ -280,13 +292,13 @@ main {
 .card-benefit {
   margin: 0;
   font-size: 0.9rem;
-  background: #faf3e0;
+  background: color-mix(in srgb, var(--accent) 28%, var(--surface));
   border-radius: 8px;
   padding: 8px 10px;
 }
 .benefit-label {
   font-weight: 700;
-  color: #74560e;
+  color: var(--accent-text);
   margin-right: 8px;
 }
 .chart-svg {
@@ -295,7 +307,7 @@ main {
   height: auto;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #fbfdfe;
+  background: var(--surface);
 }
 .chart-line {
   fill: none;
@@ -310,7 +322,7 @@ main {
 }
 .chart-dot {
   fill: var(--light);
-  stroke: #fff;
+  stroke: var(--surface);
   stroke-width: 1;
 }
 .chart-label {
