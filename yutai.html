@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株主優待ピック | 株ピック記録</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="palette-stripe" aria-hidden="true">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+  </div>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-titles">
+        <h1>株ピック記録</h1>
+        <p class="header-sub">株主優待ピック — 何がもらえるかで見る</p>
+      </div>
+      <div class="palette-picker" id="palette-picker">
+        <button type="button" class="palette-button" id="palette-button" aria-haspopup="listbox" aria-expanded="false" aria-label="カラーパレット">
+          <span class="swatch" id="palette-button-swatch" aria-hidden="true"></span>
+          <span class="palette-button-name" id="palette-button-name"></span>
+          <span class="palette-caret" aria-hidden="true">▽</span>
+        </button>
+        <div class="palette-menu" id="palette-menu" role="listbox" aria-label="カラーパレット" hidden></div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="ページ切替">
+      <a class="page-nav-link" href="index.html">バリュー</a>
+      <a class="page-nav-link active" href="yutai.html" aria-current="page">株主優待</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="summary" id="summary" aria-label="集計">
+    <div class="summary-item"><span class="summary-num" id="count-yutai">–</span><span class="summary-label">優待銘柄</span></div>
+    <div class="summary-item"><span class="summary-num" id="next-deadline">–</span><span class="summary-label">次の権利付最終日</span></div>
+    <div class="summary-item"><span class="summary-num" id="max-yield">–</span><span class="summary-label">最高 優待利回り</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-shown">–</span><span class="summary-label">表示中</span></div>
+  </section>
+
+  <section class="controls" aria-label="検索と並び替え">
+    <input type="search" id="search" placeholder="検索（銘柄名・ブランド・もらえるもの）" autocomplete="off">
+    <select id="sort" aria-label="並び替え">
+      <option value="yield">優待利回りが高い順</option>
+      <option value="amount">もらえる金額が大きい順</option>
+      <option value="mincost">最低投資額が安い順</option>
+      <option value="deadline">権利付最終日が近い順</option>
+    </select>
+  </section>
+
+  <p class="status-msg" id="status-msg" hidden></p>
+  <div id="yutai-runs"></div>
+</main>
+
+<footer>
+  <p>データ： Supabase（stock_pick_runs / stock_picks、kind = yutai）</p>
+</footer>
+
+<script src="palette.js"></script>
+<script src="yutai.js"></script>
+</body>
+</html>
