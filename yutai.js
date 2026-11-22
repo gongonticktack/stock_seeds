@@ -473,7 +473,10 @@ const SORTERS = {
 function render() {
   const q = document.getElementById("search").value.trim().toLowerCase();
   const sortKey = document.getElementById("sort").value;
-  const sorter = SORTERS[sortKey] || SORTERS.yield;
+  // 「指定なし」は権利確定月でグループ化し月内は利回り順。
+  // それ以外を選んだら月グループをやめ、全銘柄をその条件だけで並べる。
+  const grouped = sortKey === "none";
+  const sorter = grouped ? SORTERS.yield : SORTERS[sortKey] || SORTERS.yield;
 
   const container = document.getElementById("yutai-runs");
   container.innerHTML = "";
@@ -491,6 +494,28 @@ function render() {
       return hay.includes(q);
     });
   }
+  if (!grouped) {
+    // フラット表示：月グループなしで全銘柄をソート条件だけで並べる
+    const items = pool.slice().sort(sorter);
+    shown = items.length;
+    if (items.length) {
+      const section = el("section", "run");
+      const grid = el("div", "cards ycards");
+      for (const it of items) grid.appendChild(buildCard(it));
+      section.appendChild(grid);
+      container.appendChild(section);
+    }
+    document.getElementById("count-shown").textContent = shown;
+    const msg = document.getElementById("status-msg");
+    if (container.childNodes.length === 0) {
+      msg.textContent = "該当する優待ピックがありません。";
+      msg.hidden = false;
+    } else {
+      msg.hidden = true;
+    }
+    return;
+  }
+
   const groups = new Map(); // "YYYY-MM" -> items
   for (const it of pool) {
     const key = it.kakutei ? it.kakutei.slice(0, 7) : "未設定";
