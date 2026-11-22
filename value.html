@@ -3,11 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>バリュー株ピック | 株ピック記録</title>
-<meta http-equiv="refresh" content="0; url=yutai.html">
-<script>location.replace("yutai.html");</script>
+<title>バリューピック | 株ピック記録</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<p><a href="yutai.html">株主優待ピックへ移動します</a></p>
+<header class="site-header">
+  <div class="palette-stripe" aria-hidden="true">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+  </div>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-titles">
+        <h1>株ピック記録</h1>
+        <p class="header-sub">バリューピック — 5年レンジ安値圏 × バリュー指標</p>
+      </div>
+      <div class="palette-picker" id="palette-picker">
+        <button type="button" class="palette-button" id="palette-button" aria-haspopup="listbox" aria-expanded="false" aria-label="カラーパレット">
+          <span class="swatch" id="palette-button-swatch" aria-hidden="true"></span>
+          <span class="palette-button-name" id="palette-button-name"></span>
+          <span class="palette-caret" aria-hidden="true">▽</span>
+        </button>
+        <div class="palette-menu" id="palette-menu" role="listbox" aria-label="カラーパレット" hidden></div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="ページ切替">
+      <a class="page-nav-link active" href="value.html" aria-current="page">バリュー</a>
+      <a class="page-nav-link" href="yutai.html">株主優待</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="summary" id="summary" aria-label="集計">
+    <div class="summary-item"><span class="summary-num" id="count-runs">–</span><span class="summary-label">ラン</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-picks">–</span><span class="summary-label">ピック</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-jp">–</span><span class="summary-label">日本株</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-us">–</span><span class="summary-label">米国株</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-shown">–</span><span class="summary-label">表示中</span></div>
+  </section>
+
+  <section class="controls" aria-label="検索と絞り込み">
+    <input type="search" id="search" placeholder="検索（銘柄名・ブランド・キーワード）" autocomplete="off">
+    <select id="filter-kind" aria-label="市場で絞り込み">
+      <option value="">すべての市場</option>
+      <option value="JP">日本株</option>
+      <option value="US">米国株</option>
+    </select>
+  </section>
+
+  <p class="status-msg" id="status-msg" hidden></p>
+  <div id="runs"></div>
+</main>
+
+<footer>
+  <p>データ： Supabase（stock_pick_runs / stock_picks、kind = value）</p>
+</footer>
+
+<script src="palette.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

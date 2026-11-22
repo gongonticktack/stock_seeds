@@ -687,4 +687,15 @@ footer {
 @media (max-width: 600px) {
   .cards { grid-template-columns: 1fr; }
   .header-inner h1 { font-size: 1.5rem; }
+  /* 集計帯はモバイルで幅バラバラの縦積みにせず、均等な2列グリッドにする */
+  .summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .summary-item { min-width: 0; }
+  /* 奇数個のときは最後の1件を全幅にして段組みをそろえる */
+  .summary-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  /* 表チップの長い値（日付＋残日数）はモバイルで折り返しを許可する */
+  .ycard-chips.front .ychip-value { white-space: normal; }
 }
