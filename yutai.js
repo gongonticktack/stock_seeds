@@ -205,7 +205,153 @@ const PHOTO_URLS = {
   "3387": "https://soritravl.com/wp-content/uploads/2024/12/img-4-5.webp",
   "3395": "https://asakatsu-shiyo.com/wp-content/uploads/2025/08/image-194-1024x768.jpg",
   "3196": "https://preresearch.image.itmedia.co.jp/nl/articles/2311/06/cover_news067.jpg",
+  "2002": "https://www.nisshin-seifun-welna.com/index/products/product_file/file/4902110266597.jpg",
+  "2220": "https://www.kamedaseika.co.jp/wp-content/uploads/2026/04/273081_1200_630.jpg",
+  "2212": "https://img1.esimg.jp/image/food/00/00/52/2938660_original.jpg",
+  "2594": "https://www.keycoffee.co.jp/cms/img/kaigyo-navi/fb/2099-14.png",
+  "2875": "https://images-fe.ssl-images-amazon.com/images/I/517GflP5sJL.jpg",
+  "2296": "https://shaddy.jp/shop/49980000/commodity/1742437.jpg",
+  "4985": "https://www.earth.jp/products/mondahmin-peppermint-1080/images/0022446T_4901080504715_00.jpg",
+  "9831": "https://parksky-ebina.com/img/location/location08.jpg",
+  "8227": "https://media.image.infoseek.co.jp/isnews/photos/toushin1/toushin1_29396_0.jpg",
+  "2685": "https://diamond-rm.net/wp-content/uploads/2023/08/47f3b3a956c84bfcf9de2fde11487ea1.png",
+  "9942": "https://libs.edit.pref.oita.jp/wp/wp-content/uploads/2022/05/13131739/series-my-fave-002-photo10.jpg",
+  "9850": "https://prcdn.freetls.fastly.net/release_image/90386/126/90386-126-a2bc8c9facfb2cc93bf261d2392211dd-2555x1704.jpg",
+  "3563": "https://dol.ismcdn.jp/mwimgs/8/9/-/img_8956f5209f2ebd3bce36b95db320b05f476255.jpg",
+  "3053": "https://biz-journal.jp/wp-content/uploads/2020/07/post_168277_1.jpg",
+  "9731": "https://www.astekawanishi.com/cms/wp-content/uploads/2022/03/4900a151a8c6bd89677f02559c192b5d.jpg",
+  "9021": "https://travel.watch.impress.co.jp/img/trw/list/1335/376/01.jpg",
+  "9142": "https://cdn-ak.f.st-hatena.com/images/fotolife/g/graham42/20260525/20260525204627.jpg",
+  "9048": "https://www.meitetsu.co.jp/library/rolling_stock/detail_exp/__icsFiles/afieldfile/2021/06/24/library_rolling_stock_6800_1.jpg",
+  "9005": "https://s.eximg.jp/exnews/feed/Trafficnews/Trafficnews_113622_854f_1.jpg",
+  "9007": "https://images.tetsudo.com/news/20220713/site-728944-a-001.jpg",
+  "4680": "https://www.round1.co.jp/service/spo-cha/img/minibowling.jpg",
+  "7867": "https://www.takaratomy.co.jp/products/tomica/tomicaworld/list/img/img_item_006.jpg",
+  "2305": "https://prtimes.jp/i/3306/7/resize/d3306-7-424629-5.jpg",
+  "4923": "https://www.cota.co.jp/i-care_officialsite/product/images/shampoo_main_ph.jpg",
+  "8233": "https://static.hokkaido-np.co.jp/image/article/size1/f/1/6/0/f160bfbb5a5499a70d297ea5cc757cfa_4.webp",
+  "3099": "https://cp.mistore.jp/content/dam/isetan_mitsukoshi/global/common/shinjuku/img/shinjuku_traffic_img01.jpg",
+  "3549": "https://lh5.googleusercontent.com/p/AF1QipMtSVQhVgMxuF9xIaZ5unm1oa1ccjiXP_4XSdx3=s1600-w800-k-no",
+  "9948": "https://news.shoninsha.co.jp/wp-content/uploads/2019/04/ralse_20190412_01.png",
+  "4666": "https://cdn-webcartop.com/wp-content/uploads/2021/04/webcartop_newcar_011.jpg",
+  "2818": "https://www.pietro.co.jp/assets/upload/product/20260105_DS.jpg",
 };
+
+// カード見出し用の短いタイトル（「100株で〜」の詳細は折りたたみの中に表示）
+const SHORT_TITLES = {
+  "3160": "アミカ商品券2,000円分",
+  "9215": "家事代行ギフト8,000円分",
+  "138A": "食事券 年10,000円分",
+  "2769": "お買物券10,000円分",
+  "3547": "食事券 年4,000円分",
+  "4825": "ウェザーニュースPro無料",
+  "8923": "施設利用割引券3,000円分",
+  "7501": "お買物20%OFF券",
+  "4755": "楽天モバイル6ヶ月無料",
+  "2269": "お菓子詰め合わせ",
+  "2503": "飲料詰め合わせ",
+  "2502": "ビール詰め合わせ",
+  "3197": "食事券2,000円分",
+  "2702": "食事券1冊（6食分）",
+  "9861": "食事券2,000円分",
+  "4661": "1デーパスポート1枚",
+  "9202": "国内線50%割引券",
+  "2897": "食品詰め合わせ",
+  "2810": "食品詰め合わせ",
+  "3397": "食事券3,000円分",
+  "4912": "日用品詰め合わせ",
+  "2268": "アイス引換eGift1,200円分",
+  "4665": "優待券1,000円分",
+  "2809": "食品詰め合わせ",
+  "2698": "買物割引券2,200円相当",
+  "2590": "飲料詰め合わせ",
+  "3399": "ラーメン無料券2枚",
+  "3193": "食事券500円分",
+  "2531": "お酒・調味料詰め合わせ",
+  "3048": "買物優待券 年3,000円分",
+  "7545": "お買物カード1,000円相当",
+  "7649": "優待券1,000円相当",
+  "3543": "コメカ1,000円分チャージ",
+  "9946": "ソフトクリーム無料券5枚",
+  "7630": "食事券1,000円相当",
+  "7611": "優待券1,000円分",
+  "8185": "20%割引券5枚",
+  "8276": "優待券1,000円分",
+  "2801": "しょうゆ詰め合わせ",
+  "2802": "調味料詰め合わせ",
+  "2819": "調味料セット",
+  "2264": "食品詰め合わせ",
+  "4526": "ドレッシング詰め合わせ",
+  "2908": "煮豆・佃煮詰め合わせ",
+  "2804": "ソース詰め合わせ",
+  "2201": "お菓子詰め合わせ",
+  "9201": "国内線50%割引券",
+  "9020": "サービス券・割引券",
+  "9022": "運賃・料金1割引券",
+  "9041": "招待乗車券4枚",
+  "9042": "共通回数カード",
+  "9602": "映画招待券1枚",
+  "9601": "映画優待ポイント80pt",
+  "8136": "テーマパーク優待券1枚",
+  "7550": "食事券1,000円分",
+  "2681": "リユース割引券2,000円分",
+  "2695": "食事券1,000円分",
+  "9603": "旅行優待券1,000円分",
+  "8079": "ナッツ・菓子詰め合わせ",
+  "8207": "食事券1,000円分",
+  "2792": "商品引換券3,000円分",
+  "2811": "野菜ジュース詰め合わせ",
+  "2206": "お菓子詰め合わせ",
+  "3091": "食事券2,000円分",
+  "8214": "20%割引券セット",
+  "3097": "食事券3,500円分",
+  "8200": "食事券1,650円相当",
+  "3387": "食事券1,500円相当",
+  "3395": "飲食20%OFFカード",
+  "3196": "優待券1,500円分",
+  "2002": "食品詰め合わせ",
+  "2220": "通販クーポン500円分",
+  "2212": "お菓子詰め合わせ",
+  "2594": "コーヒー詰め合わせ",
+  "2875": "即席麺詰め合わせ",
+  "2296": "ハム詰め合わせ",
+  "4985": "日用品詰め合わせ",
+  "9831": "買物優待券 年1,500円分",
+  "8227": "お買物券2,000円相当",
+  "2685": "買物優待券 年3,000円分",
+  "9942": "食事15%OFF割引券",
+  "9850": "食事券 年2,000円相当",
+  "3563": "食事券1,100円分",
+  "3053": "食事券3,000円分",
+  "9731": "クリーニング券",
+  "9021": "鉄道割引券",
+  "9142": "1日乗車券と優待券",
+  "9048": "招待乗車券と入場券",
+  "9005": "電車・バス乗車券",
+  "9007": "全線優待乗車証",
+  "4680": "500円割引券",
+  "7867": "オリジナルトミカ",
+  "2305": "写真撮影券",
+  "4923": "ヘアケア製品詰合せ",
+  "8233": "買物10%OFFカード",
+  "3099": "買物10%OFFカード",
+  "3549": "選べる優待2,000円相当",
+  "9948": "選べる優待（りんご等）",
+  "4666": "カーシェア入会特典",
+  "2818": "ドレッシング詰め合わせ",
+};
+
+function deriveShortTitle(benefit) {
+  let t = String(benefit || "").replace(/^\d[\d,]*株(以上)?で/, "").trim();
+  const cut = t.search(/[（(、※]/);
+  if (cut > 0) t = t.slice(0, cut).trim();
+  if (t.length > 18) t = t.slice(0, 18);
+  return t || "株主優待";
+}
+
+function shortTitle(pick) {
+  return SHORT_TITLES[pick.ticker] || deriveShortTitle(pick.benefit);
+}
 
 function buildCard(item) {
   const pick = item.pick;
@@ -216,7 +362,6 @@ function buildCard(item) {
   visual.appendChild(el("span", "ycard-emoji", item.category.emoji));
   const vtext = el("div", "ycard-visual-text");
   vtext.appendChild(el("span", "ycard-cat", item.category.label));
-  if (item.amountText) vtext.appendChild(el("span", "ycard-amount", item.amountText));
   visual.appendChild(vtext);
   if (item.yieldText) {
     visual.appendChild(el("span", "ycard-yield", "利回り " + item.yieldText));
@@ -237,7 +382,6 @@ function buildCard(item) {
     overlay.appendChild(el("span", "ycard-emoji", item.category.emoji));
     const otext = el("div", "ycard-visual-text");
     otext.appendChild(el("span", "ycard-cat", item.category.label));
-    if (item.amountText) otext.appendChild(el("span", "ycard-amount", item.amountText));
     overlay.appendChild(otext);
     photo.appendChild(overlay);
     if (item.yieldText) {
@@ -248,19 +392,29 @@ function buildCard(item) {
     card.appendChild(visual);
   }
 
-  if (pick.benefit) card.appendChild(el("p", "ycard-benefit", pick.benefit));
+  // 短いタイトル（何がもらえるか）
+  card.appendChild(el("h3", "ycard-title", shortTitle(pick)));
 
-  // 要点チップ
-  const chips = el("div", "ycard-chips");
-  const addChip = (label, value, urgent) => {
+  // 銘柄
+  const company = el("div", "ycard-company");
+  const nameLine = el("p", "ycard-name", pick.name || pick.ticker || "");
+  if (pick.ticker) {
+    nameLine.appendChild(el("span", "ycard-ticker", pick.ticker));
+  }
+  company.appendChild(nameLine);
+  if (pick.brand) company.appendChild(el("p", "ycard-brand", pick.brand));
+  card.appendChild(company);
+
+  const addChip = (chips, label, value, urgent) => {
     if (!value) return;
     const chip = el("span", "ychip" + (urgent ? " urgent" : ""));
     chip.appendChild(el("span", "ychip-label", label));
     chip.appendChild(el("span", "ychip-value", value));
     chips.appendChild(chip);
   };
-  if (item.shares != null) addChip("必要株数", item.shares.toLocaleString("ja-JP") + "株〜");
-  if (item.minCost != null) addChip("最低投資額", fmtYen(item.minCost));
+
+  // 表側の要点チップ（権利付最終日・最低投資額だけ）
+  const frontChips = el("div", "ycard-chips");
   if (item.deadline) {
     const d = daysUntil(item.deadline);
     let text = fmtDateJP(item.deadline);
@@ -269,27 +423,36 @@ function buildCard(item) {
       text += "（あと" + d + "日）";
       urgent = d <= 7;
     }
-    addChip("権利付最終日", text, urgent);
+    addChip(frontChips, "権利付最終日", text, urgent);
   }
-  if (item.freq) addChip("頻度", item.freq);
+  if (item.minCost != null) addChip(frontChips, "最低投資額", fmtYen(item.minCost));
+  if (frontChips.childNodes.length) card.appendChild(frontChips);
+
+  // 詳細（初期は折りたたみ。「何株で何がもらえるか」はここ）
+  const details = el("div", "ycard-details");
+  details.hidden = true;
+  if (pick.benefit) details.appendChild(el("p", "ycard-benefit", pick.benefit));
+  const detailChips = el("div", "ycard-chips");
+  if (item.shares != null) addChip(detailChips, "必要株数", item.shares.toLocaleString("ja-JP") + "株〜");
+  if (item.freq) addChip(detailChips, "頻度", item.freq);
   if (pick.price != null && pick.price !== "") {
-    addChip("株価", fmtYen(Number(pick.price)));
+    addChip(detailChips, "株価", fmtYen(Number(pick.price)));
   }
-  if (chips.childNodes.length) card.appendChild(chips);
+  if (detailChips.childNodes.length) details.appendChild(detailChips);
+  if (pick.note) details.appendChild(el("p", "ycard-note", pick.note));
+  if (pick.memo) details.appendChild(el("p", "ycard-note", "メモ: " + pick.memo));
+  card.appendChild(details);
 
-  // 銘柄
-  const company = el("div", "ycard-company");
-  const h = el("h3", "ycard-name", pick.name || pick.ticker || "");
-  if (pick.ticker) {
-    const t = el("span", "ycard-ticker", pick.ticker);
-    h.appendChild(t);
-  }
-  company.appendChild(h);
-  if (pick.brand) company.appendChild(el("p", "ycard-brand", pick.brand));
-  card.appendChild(company);
-
-  if (pick.note) card.appendChild(el("p", "ycard-note", pick.note));
-  if (pick.memo) card.appendChild(el("p", "ycard-note", "メモ: " + pick.memo));
+  const toggle = el("button", "ycard-toggle", "詳細を見る ▾");
+  toggle.type = "button";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.addEventListener("click", () => {
+    const open = details.hidden;
+    details.hidden = !open;
+    toggle.textContent = open ? "詳細を閉じる ▴" : "詳細を見る ▾";
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  card.appendChild(toggle);
 
   return card;
 }

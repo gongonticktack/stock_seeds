@@ -635,6 +635,32 @@ footer {
   font-size: 0.84rem;
   color: var(--muted);
 }
+.ycard-title {
+  margin: 0;
+  padding: 14px 16px 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--accent-text);
+}
+.ycard-details {
+  border-top: 1px dashed var(--border);
+  margin-top: 12px;
+}
+.ycard-toggle {
+  margin-top: auto;
+  width: 100%;
+  padding: 11px 16px;
+  background: var(--surface-muted);
+  border: none;
+  border-top: 1px solid var(--border);
+  color: var(--accent-text);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-align: center;
+}
 
 @media (max-width: 600px) {
   .ycard-amount { font-size: 1.55rem; }
