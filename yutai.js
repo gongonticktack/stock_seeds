@@ -145,6 +145,16 @@ const PHOTO_URLS = {
   "7501": "https://store.castingnet.jp/img/goods/L/4549769200277.jpg", // ティムコ：Foxfire フィッシングベスト
   "4755": "https://network.mobile.rakuten.co.jp/static/assets/img/shop/detail/interior/5321_002.png", // 楽天グループ：楽天モバイルショップ店内
   "2269": "https://public.muragon.com/utkqqdmw/fw7r68q3/resize/440x640.jpg", // 明治HD：優待のお菓子詰め合わせ
+  "2503": "https://wisewideweb.com/wp-content/uploads/2019/03/yutai-2503-7.jpg", // キリンHD：優待のビール詰合せ
+  "2502": "https://yutaikobouzu.com/wp-content/uploads/2024/04/IMG_4123-scaled.jpeg", // アサヒGHD：株主限定プレミアムビール
+  "3197": "https://biz-journal.jp/wp-content/uploads/2026/08/post_395719_GUSTO.jpg", // すかいらーくHD：ガスト店舗
+  "2702": "https://www.ssnp.co.jp/uploads/2023/06/230622mac1.jpg", // 日本マクドナルドHD：マクドナルド店舗
+  "9861": "https://tk.ismcdn.jp/mwimgs/3/6/-/img_364b64e88199d094dd812710e5cbde9d130657.jpg", // 吉野家HD：吉野家店舗・牛丼
+  "4661": "https://ayatatsu0314.com/wp-content/uploads/2024/07/sinndererajou-scaled.jpg", // オリエンタルランド：シンデレラ城
+  "9202": "https://flyteam.jp/assets/images/photo/4480622/640x640.jpg", // ANAHD：ANA機体
+  "2897": "https://stat.ameba.jp/user_images/20250714/11/donaldakkun/9d/a7/j/o4608345615633905542.jpg", // 日清食品HD：優待の製品詰合せ
+  "2810": "https://blog-imgs-156.fc2.com/p/o/c/pochi12345/20250305002342f53.jpg", // ハウス食品G：優待の製品詰合せ
+  "3397": "https://saikura.info/wp-content/uploads/2026/02/file2-3.jpg", // トリドールHD：丸亀製麺店舗
 };
 
 function buildCard(item) {
