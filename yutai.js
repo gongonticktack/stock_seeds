@@ -414,7 +414,7 @@ function buildCard(item) {
   };
 
   // 表側の要点チップ（権利付最終日・最低投資額だけ）
-  const frontChips = el("div", "ycard-chips");
+  const frontChips = el("div", "ycard-chips front");
   if (item.deadline) {
     const d = daysUntil(item.deadline);
     let text = fmtDateJP(item.deadline);
