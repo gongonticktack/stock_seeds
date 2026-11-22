@@ -155,6 +155,56 @@ const PHOTO_URLS = {
   "2897": "https://stat.ameba.jp/user_images/20250714/11/donaldakkun/9d/a7/j/o4608345615633905542.jpg", // 日清食品HD：優待の製品詰合せ
   "2810": "https://blog-imgs-156.fc2.com/p/o/c/pochi12345/20250305002342f53.jpg", // ハウス食品G：優待の製品詰合せ
   "3397": "https://saikura.info/wp-content/uploads/2026/02/file2-3.jpg", // トリドールHD：丸亀製麺店舗
+  "4912": "https://wisewideweb.com/wp-content/uploads/2019/03/yutai-4912-13.jpg",
+  "2268": "https://www.anesis-ltd.co.jp/photo/31aeontownmoriya1.jpg",
+  "4665": "https://www.forval-iot.jp/wp/wp-content/uploads/2021/09/img_2021_10_14.jpg",
+  "2809": "https://media.rakuten-sec.net/mwimgs/5/a/-/img_5a88ec8a2e6b6024922626dc7ab2f71269210.jpg",
+  "2698": "https://www.prope.or.jp/wp-content/uploads/2017/01/IMG_3896-768x512.jpg",
+  "2590": "https://reeell.com/wp-content/uploads/2022/04/20220412_2590_4.jpg",
+  "3399": "https://emunoranchi.com/wp-content/uploads/2024/05/IMG_2863.jpg",
+  "3193": "https://torikizoku.co.jp/wp-public/wp-content/themes/torikizoku/images/top/menu_img1.jpg",
+  "2531": "https://d2seevf4vrbvhc.cloudfront.net/uploads/shareholder_benefit_image/image/1114/2531_260623_1.jpg",
+  "3048": "https://mz-cdn.shoeisha.jp/static/images/article/72291/13333_01.jpg",
+  "7545": "https://myakuzumi.com/manage/wp-content/uploads/2024/07/8B0A46A6-AF4D-428D-BC5F-8EF216D786D0-1024x768.jpeg",
+  "7649": "https://lh5.googleusercontent.com/p/AF1QipNhxzYlgnd5_Gds4YSbQ5CZng4TQ_ItCPrjGPI1=s1600-w800-k-no",
+  "3543": "https://community.dl-asobica.com/public/uploads/announcement/caption_image/fwqmiff6gei4ozhw/cb810a1a-4ce5-456f-9df1-4ff1959dcb59.jpeg",
+  "9946": "https://www.ministop.co.jp/site_common/ogp_softcream.jpg",
+  "7630": "https://rensai.jp/wp-content/uploads/2023/11/02_IMG_4433.jpg",
+  "7611": "https://livedoor.blogimg.jp/amaozisan/imgs/4/0/4016089d.jpg",
+  "8185": "https://www.chiyodagrp.co.jp/store_develop/img/200124_tsrc_1000-460.png",
+  "8276": "https://img01.suumo.com/front/gazo/fr/bukken/298/100521965298/100521965298_s3o.jpg",
+  "2801": "https://downshifters.net/wp-content/uploads/2020/10/sakata20200916-661x1024.jpeg.webp",
+  "2802": "https://mitsurugi-group.com/img/blog/43/ajinomoto-yutai.jpg",
+  "2819": "https://sbisec.akamaized.net/sbisec/images/base/yutai/2819-3.jpg",
+  "2264": "https://precious-bud.com/wp-content/uploads/2023/02/img_0042.jpg",
+  "4526": "https://sbisec.akamaized.net/sbisec/images/base/yutai/4526-1.jpg",
+  "2908": "https://sbisec.akamaized.net/sbisec/images/base/yutai/2908-3.jpg",
+  "2804": "https://dfinance.ismcdn.jp/zai/mwimgs/6/a/580/img_6aad61644b40e608e9026591ba0d6a1437929.jpg",
+  "2201": "https://downshifters.net/wp-content/uploads/2026/02/morinaga20260214-04-1024x768.jpg",
+  "9201": "https://nij.nikon.com/cms/learn/phototech/shutter-stories/img/nakano_airplane1/pic_03.jpg",
+  "9020": "https://jr-shinkansen.net/images/e59301.jpg",
+  "9022": "https://tetsudo-ch.com/wp-content/uploads/2022/12/n700s.jpg",
+  "9041": "https://tetsudo-shimbun.com/archives/002/201911/5dd38a44af169.jpg",
+  "9042": "https://images.tetsudo.com/column/1290/250715c14.jpg",
+  "9602": "https://www.cinemacafe.net/imgs/ogp_f/780082.jpg",
+  "9601": "https://appllio.com/sites/default/files/styles/cover_xl_1/public/2025/05/22/how-to-use-movix-app-2025-top.jpg",
+  "8136": "https://stat.ameba.jp/user_images/20240129/11/i-rashiku/ac/70/j/o2898217315395008342.jpg",
+  "7550": "https://drdo50jm8vowu.cloudfront.net/uploads/article/58197/thumb_%E7%89%9B%E4%B8%BC2021%E5%B9%B45%E6%9C%8817%E6%97%A5.jpg",
+  "2681": "https://lh5.googleusercontent.com/p/AF1QipMFWEEIJ-6zu7c2mh_fAOS1gpTGO72WGFUNGfsR=s1600-w800-k-no",
+  "2695": "https://cdn.macaro-ni.jp/image/summary/137/137015/okawqtRSLMsxzlTNr7lyo3HNxYOkCKhPc2yuKjQG.jpg",
+  "9603": "https://lh3.googleusercontent.com/p/AF1QipPLkDu5msoiXOFFdTM2r65yjb-Bnf1Atoton2VA=s1600-w800-k-no",
+  "8079": "https://cdn-ak.f.st-hatena.com/images/fotolife/k/kabuinu/20241109/20241109162645.jpg",
+  "8207": "https://gokigenbiyori.com/wp-content/uploads/2024/08/tengu-shinjyukunisiguti-pallet-building-6.jpg",
+  "2792": "https://www.latov.com/wp-content/uploads/2017/05/%E3%83%8F%E3%83%8B%E3%83%BC%E3%82%BA1-1-1024x682.jpg",
+  "2811": "https://stat.ameba.jp/user_images/20231019/19/boowoo2018/64/eb/j/o0604080615353060396.jpg",
+  "2206": "https://wisewideweb.com/wp-content/uploads/2021/12/yutai-2206-3.jpg",
+  "3091": "https://lh3.googleusercontent.com/p/AF1QipNqJ4XIMCjQaXIHahUCtRJcZQIiOLdZg0nEF8EY=s1600-w800-k-no",
+  "8214": "https://senken.co.jp/production/uploads/file_content/file/316939/large_AOKI%E3%82%AA%E3%83%AA%E3%83%92%E3%82%AB760.png",
+  "3097": "https://www.shiosai-foods.co.jp/resources/images/king_nagaoka.jpg",
+  "8200": "https://rocketnews24.com/wp-content/uploads/sites/2/2023/06/copperinger2.jpg",
+  "3387": "https://soritravl.com/wp-content/uploads/2024/12/img-4-5.webp",
+  "3395": "https://asakatsu-shiyo.com/wp-content/uploads/2025/08/image-194-1024x768.jpg",
+  "3196": "https://preresearch.image.itmedia.co.jp/nl/articles/2311/06/cover_news067.jpg",
 };
 
 function buildCard(item) {
@@ -266,32 +316,50 @@ function render() {
   container.innerHTML = "";
   let shown = 0;
 
-  for (const runDate of runsOrder) {
-    let items = allItems.filter((it) => it.pick.run_date === runDate);
-    if (q) {
-      items = items.filter((it) => {
-        const p = it.pick;
-        const hay = [p.ticker, p.name, p.brand, p.benefit, p.note, p.memo]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-        return hay.includes(q);
-      });
-    }
-    if (!items.length) continue;
-    items = items.slice().sort(sorter);
+  // 権利確定月ごとにグルーピング（近い月から表示）
+  let pool = allItems;
+  if (q) {
+    pool = pool.filter((it) => {
+      const p = it.pick;
+      const hay = [p.ticker, p.name, p.brand, p.benefit, p.note, p.memo]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return hay.includes(q);
+    });
+  }
+  const groups = new Map(); // "YYYY-MM" -> items
+  for (const it of pool) {
+    const key = it.kakutei ? it.kakutei.slice(0, 7) : "未設定";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(it);
+  }
+  const monthKeys = [...groups.keys()].sort((a, b) => {
+    if (a === "未設定") return 1;
+    if (b === "未設定") return -1;
+    return a.localeCompare(b);
+  });
+
+  for (const key of monthKeys) {
+    const items = groups.get(key).slice().sort(sorter);
     shown += items.length;
 
     const section = el("section", "run");
     const head = el("div", "run-head");
     const title = el("h2", "run-title");
-    const kakuteis = new Set(items.map((it) => it.kakutei).filter(Boolean));
-    if (kakuteis.size === 1) {
-      title.appendChild(
-        el("span", "run-date", "権利確定 " + fmtDateJP([...kakuteis][0]))
-      );
+    if (key === "未設定") {
+      title.appendChild(el("span", "run-date", "権利月 未設定"));
     } else {
-      title.appendChild(el("span", "run-date", runDate));
+      const [yy, mm] = key.split("-");
+      title.appendChild(
+        el("span", "run-date", yy + "年" + Number(mm) + "月権利")
+      );
+      const deadlines = items.map((it) => it.deadline).filter(Boolean).sort();
+      if (deadlines.length) {
+        title.appendChild(
+          el("span", "run-headline", "権利付最終日 " + fmtDateJP(deadlines[0]))
+        );
+      }
     }
     title.appendChild(el("span", "run-headline", items.length + "銘柄"));
     head.appendChild(title);
