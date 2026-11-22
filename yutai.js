@@ -132,6 +132,18 @@ function daysUntil(iso) {
 
 // ---- カード ----
 
+// 銘柄ごとの写真（もらえるもの・使える場所が一目で分かる実写）。出典は各社公式・店舗紹介ページ
+const PHOTO_URLS = {
+  "3160": "https://amica-official.com/wp-content/uploads/2023/04/akabanenishi_small2.jpg", // 大光：業務用スーパー「アミカ」店舗
+  "9215": "https://journal.casy.co.jp/wp-content/themes/casy_journal/assets/img/casy-service.jpg", // CaSy：家事代行スタッフ
+  "138A": "https://ximg.retty.me/crop/s524x524/q80/das/-/retty/img_ebisu/restaurant/100001712654/archive/3372716-66acbac5330cb.jpg", // 光フード：居酒屋「大黒」
+  "2769": "https://www.tsukashin.com/photo/425-480.jpg", // ヴィレッジヴァンガード店内
+  "3547": "https://tsu.goguynet.jp/wp-content/uploads/sites/231/2022/03/IMG_20220313_163543.jpg", // ユニシアHD：串カツ田中 店舗
+  "4825": "https://www.au.com/content/dam/au-com/entertainment/smartpass/en_smartpass_img_10.png", // ウェザーニューズ：アプリ画面
+  "8923": "https://tosei-hotel.co.jp/kanda/files/ogp.jpg", // トーセイ：トーセイホテル ココネ
+  "7501": "https://store.castingnet.jp/img/goods/L/4549769200277.jpg", // ティムコ：Foxfire フィッシングベスト
+};
+
 function buildCard(item) {
   const pick = item.pick;
   const card = el("article", "ycard");
@@ -146,7 +158,32 @@ function buildCard(item) {
   if (item.yieldText) {
     visual.appendChild(el("span", "ycard-yield", "利回り " + item.yieldText));
   }
-  card.appendChild(visual);
+
+  // 写真がある銘柄は写真バンドを最上段に（読み込めなければ絵文字バンドに差し替え）
+  const photoUrl = PHOTO_URLS[pick.ticker];
+  if (photoUrl) {
+    const photo = el("div", "ycard-photo");
+    const img = el("img", "ycard-photo-img");
+    img.alt = (pick.brand || pick.name || "") + "の写真";
+    img.loading = "lazy";
+    img.referrerPolicy = "no-referrer";
+    img.addEventListener("error", () => photo.replaceWith(visual));
+    img.src = photoUrl;
+    photo.appendChild(img);
+    const overlay = el("div", "ycard-photo-overlay");
+    overlay.appendChild(el("span", "ycard-emoji", item.category.emoji));
+    const otext = el("div", "ycard-visual-text");
+    otext.appendChild(el("span", "ycard-cat", item.category.label));
+    if (item.amountText) otext.appendChild(el("span", "ycard-amount", item.amountText));
+    overlay.appendChild(otext);
+    photo.appendChild(overlay);
+    if (item.yieldText) {
+      photo.appendChild(el("span", "ycard-yield", "利回り " + item.yieldText));
+    }
+    card.appendChild(photo);
+  } else {
+    card.appendChild(visual);
+  }
 
   if (pick.benefit) card.appendChild(el("p", "ycard-benefit", pick.benefit));
 
