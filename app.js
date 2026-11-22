@@ -211,9 +211,12 @@ function buildCard(pick) {
   const specs = el("div", "card-specs");
   const addSpec = (label, value) => {
     if (!value) return;
+    // 値の先頭にラベル自体が含まれていたら取り除く（データ表記ゆれ対策）
+    let v = String(value);
+    if (v.startsWith(label)) v = v.slice(label.length).replace(/^[\s　]+/, "");
     const item = el("span", "spec");
     item.appendChild(el("span", "spec-label", label));
-    item.appendChild(el("span", "spec-value", value));
+    item.appendChild(el("span", "spec-value", v));
     specs.appendChild(item);
   };
   addSpec("PER", pick.per);
