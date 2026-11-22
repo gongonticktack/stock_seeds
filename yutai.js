@@ -60,6 +60,7 @@ function benefitCategory(benefit) {
   if (/%OFF|割引/.test(t)) return { emoji: "🏷️", label: "割引券" };
   if (/お買物券|買物券|商品券/.test(t)) return { emoji: "🛍️", label: "お買物券・商品券" };
   if (/家事|代行|クリーニング/.test(t)) return { emoji: "🧹", label: "サービス" };
+  if (/お菓子|菓子|詰合せ|自社製品/.test(t)) return { emoji: "🍫", label: "自社製品" };
   if (/コンテンツ|無料/.test(t)) return { emoji: "📱", label: "デジタル特典" };
   return { emoji: "🎁", label: "優待" };
 }
@@ -142,6 +143,8 @@ const PHOTO_URLS = {
   "4825": "https://www.au.com/content/dam/au-com/entertainment/smartpass/en_smartpass_img_10.png", // ウェザーニューズ：アプリ画面
   "8923": "https://tosei-hotel.co.jp/kanda/files/ogp.jpg", // トーセイ：トーセイホテル ココネ
   "7501": "https://store.castingnet.jp/img/goods/L/4549769200277.jpg", // ティムコ：Foxfire フィッシングベスト
+  "4755": "https://network.mobile.rakuten.co.jp/static/assets/img/shop/detail/interior/5321_002.png", // 楽天グループ：楽天モバイルショップ店内
+  "2269": "https://public.muragon.com/utkqqdmw/fw7r68q3/resize/440x640.jpg", // 明治HD：優待のお菓子詰め合わせ
 };
 
 function buildCard(item) {
