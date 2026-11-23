@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セクター統計 | 株ピック記録</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="palette-stripe" aria-hidden="true">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+  </div>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-titles">
+        <h1>株ピック記録</h1>
+        <p class="header-sub">セクター統計 — テーマ別の強弱と次の候補</p>
+      </div>
+      <div class="palette-picker" id="palette-picker">
+        <button type="button" class="palette-button" id="palette-button" aria-haspopup="listbox" aria-expanded="false" aria-label="カラーパレット">
+          <span class="swatch" id="palette-button-swatch" aria-hidden="true"></span>
+          <span class="palette-button-name" id="palette-button-name"></span>
+          <span class="palette-caret" aria-hidden="true">▽</span>
+        </button>
+        <div class="palette-menu" id="palette-menu" role="listbox" aria-label="カラーパレット" hidden></div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="ページ切替">
+      <a class="page-nav-link" href="yutai.html">株主優待</a>
+      <a class="page-nav-link" href="value.html">バリュー</a>
+      <a class="page-nav-link" href="daily.html">日報</a>
+      <a class="page-nav-link active" href="stats.html" aria-current="page">統計</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="controls" aria-label="市場の選択">
+    <select id="market-select" aria-label="市場を選択">
+      <option value="JP">日本テーマ</option>
+      <option value="US">米国セクター</option>
+    </select>
+    <span class="stats-asof" id="stats-asof"></span>
+  </section>
+
+  <section class="summary" aria-label="集計">
+    <div class="summary-item"><span class="summary-num" id="count-up">–</span><span class="summary-label">上昇（1ヶ月）</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-down">–</span><span class="summary-label">下落（1ヶ月）</span></div>
+    <div class="summary-item"><span class="summary-num" id="strongest">–</span><span class="summary-label">最も強いテーマ</span></div>
+    <div class="summary-item"><span class="summary-num" id="weakest">–</span><span class="summary-label">最も弱いテーマ</span></div>
+  </section>
+
+  <p class="status-msg" id="status-msg" hidden></p>
+
+  <section class="stats-section" aria-label="人気テーマ">
+    <h2 class="stats-h2">人気テーマ（上昇・強い）</h2>
+    <div class="stats-cards" id="hot-cards"></div>
+  </section>
+
+  <section class="stats-section" aria-label="下がり気味のテーマ">
+    <h2 class="stats-h2">下がり気味のテーマ</h2>
+    <div class="stats-cards" id="cold-cards"></div>
+  </section>
+
+  <section class="stats-section" aria-label="全セクター一覧">
+    <h2 class="stats-h2">全セクター一覧（1ヶ月騰落率）</h2>
+    <div class="stats-barchart" id="bar-chart"></div>
+    <div class="report-table-wrap">
+      <table class="report-table stats-heat" id="heat-table"></table>
+    </div>
+  </section>
+
+  <section class="stats-section" aria-label="次に来そうなテーマ">
+    <h2 class="stats-h2">次に来そうなテーマ（推論）</h2>
+    <div class="stats-cards" id="next-cards"></div>
+    <p class="stats-note">※ 推論はルールベースの機械的な抽出です（中期の弱さに対して短期モメンタムが上向きに転じたもの、ベンチマーク比が改善している出遅れテーマ）。投資判断の材料の一部としてご覧ください。</p>
+  </section>
+</main>
+
+<footer>
+  <p>データ： Yahoo Finance（米国＝セクターETF、日本＝代表銘柄バスケット等加重、ベンチマークは米国 SPY／日本 TOPIX(1306)）</p>
+</footer>
+
+<script src="palette.js"></script>
+<script src="stats.js"></script>
+</body>
+</html>
