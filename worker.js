@@ -69,6 +69,34 @@ async function handleDailyReport(url) {
   }
 }
 
+async function handleSectorStats() {
+  try {
+    const rows = await fetchTable(
+      "/rest/v1/sector_stats?select=market,sector_key,sector_name,as_of,close,ret_1w,ret_2w,ret_1m,ret_3m,rel_1m,rel_3m,closes"
+    );
+    const benchmarks = {};
+    const sectors = [];
+    for (const r of rows) {
+      if (r.sector_key === "__benchmark__") {
+        benchmarks[r.market] = {
+          name: r.sector_name,
+          as_of: r.as_of,
+          close: r.close,
+          ret_1m: r.ret_1m,
+          ret_3m: r.ret_3m,
+        };
+      } else {
+        sectors.push(r);
+      }
+    }
+    return json({ benchmarks, sectors }, 200, {
+      "cache-control": "public, s-maxage=300, stale-while-revalidate=60",
+    });
+  } catch (e) {
+    return json({ error: "supabase_error" }, 502);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -76,6 +104,9 @@ export default {
     if (url.pathname.startsWith("/api/")) {
       if (url.pathname === "/api/picks" && request.method === "GET") {
         return handlePicks();
+      }
+      if (url.pathname === "/api/sector-stats" && request.method === "GET") {
+        return handleSectorStats();
       }
       if (url.pathname === "/api/daily-reports" && request.method === "GET") {
         return handleDailyReports();

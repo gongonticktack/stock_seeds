@@ -153,9 +153,21 @@ function render(market) {
 
 async function init() {
   try {
-    const res = await fetch("stats-data.json");
-    if (!res.ok) throw new Error("fetch failed");
+    let res = await fetch("/api/sector-stats");
+    if (!res.ok) throw new Error("api failed");
     STATS = await res.json();
+    if (!STATS.sectors || !STATS.sectors.length) throw new Error("api empty");
+  } catch (apiErr) {
+    try {
+      const res = await fetch("stats-data.json");
+      if (!res.ok) throw new Error("fetch failed");
+      STATS = await res.json();
+    } catch (e) {
+      showStatus("統計データを読み込めませんでした。");
+      return;
+    }
+  }
+  try {
     marketSelect.addEventListener("change", () => render(marketSelect.value));
     render(marketSelect.value);
   } catch (e) {
