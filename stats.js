@@ -223,8 +223,7 @@ async function init() {
     }
   }
   try {
-    marketSelect.addEventListener("change", () => render(marketSelect.value));
-    render(marketSelect.value);
+    render("ALL");
   } catch (e) {
     showStatus("統計データを読み込めませんでした。");
   }
