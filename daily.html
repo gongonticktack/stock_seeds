@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式日報 | 株ピック記録</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="palette-stripe" aria-hidden="true">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+  </div>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-titles">
+        <h1>株ピック記録</h1>
+        <p class="header-sub">株式日報 — 日米の株価と値動き候補</p>
+      </div>
+      <div class="palette-picker" id="palette-picker">
+        <button type="button" class="palette-button" id="palette-button" aria-haspopup="listbox" aria-expanded="false" aria-label="カラーパレット">
+          <span class="swatch" id="palette-button-swatch" aria-hidden="true"></span>
+          <span class="palette-button-name" id="palette-button-name"></span>
+          <span class="palette-caret" aria-hidden="true">▽</span>
+        </button>
+        <div class="palette-menu" id="palette-menu" role="listbox" aria-label="カラーパレット" hidden></div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="ページ切替">
+      <a class="page-nav-link" href="value.html">バリュー</a>
+      <a class="page-nav-link" href="yutai.html">株主優待</a>
+      <a class="page-nav-link active" href="daily.html" aria-current="page">日報</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="summary" id="summary" aria-label="集計">
+    <div class="summary-item"><span class="summary-num" id="count-days">–</span><span class="summary-label">日報数</span></div>
+    <div class="summary-item"><span class="summary-num" id="latest-date">–</span><span class="summary-label">最新号</span></div>
+    <div class="summary-item"><span class="summary-num" id="count-tickers">–</span><span class="summary-label">掲載銘柄</span></div>
+  </section>
+
+  <section class="controls" aria-label="日付の選択">
+    <select id="date-select" aria-label="日付を選択"></select>
+  </section>
+
+  <p class="status-msg" id="status-msg" hidden></p>
+  <article class="report" id="report"></article>
+</main>
+
+<footer>
+  <p>データ： Supabase（stock_daily_reports）</p>
+</footer>
+
+<script src="palette.js"></script>
+<script src="daily.js"></script>
+</body>
+</html>

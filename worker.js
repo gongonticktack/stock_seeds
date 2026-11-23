@@ -38,6 +38,37 @@ async function handlePicks() {
   }
 }
 
+async function handleDailyReports() {
+  try {
+    const reports = await fetchTable(
+      "/rest/v1/stock_daily_reports?select=report_date,title,tickers&order=report_date.desc"
+    );
+    return json({ reports }, 200, {
+      "cache-control": "public, s-maxage=300, stale-while-revalidate=60",
+    });
+  } catch (e) {
+    return json({ error: "supabase_error" }, 502);
+  }
+}
+
+async function handleDailyReport(url) {
+  const date = url.searchParams.get("date") || "";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return json({ error: "bad_date" }, 400);
+  }
+  try {
+    const rows = await fetchTable(
+      "/rest/v1/stock_daily_reports?select=report_date,title,content_md,tickers&report_date=eq." +
+        encodeURIComponent(date)
+    );
+    return json({ report: rows[0] || null }, 200, {
+      "cache-control": "public, s-maxage=300, stale-while-revalidate=60",
+    });
+  } catch (e) {
+    return json({ error: "supabase_error" }, 502);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -45,6 +76,12 @@ export default {
     if (url.pathname.startsWith("/api/")) {
       if (url.pathname === "/api/picks" && request.method === "GET") {
         return handlePicks();
+      }
+      if (url.pathname === "/api/daily-reports" && request.method === "GET") {
+        return handleDailyReports();
+      }
+      if (url.pathname === "/api/daily-report" && request.method === "GET") {
+        return handleDailyReport(url);
       }
       return json({ error: "not_found" }, 404);
     }

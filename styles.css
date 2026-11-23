@@ -699,3 +699,32 @@ footer {
   /* 表チップの長い値（日付＋残日数）はモバイルで折り返しを許可する */
   .ycard-chips.front .ychip-value { white-space: normal; }
 }
+
+/* 株式日報 */
+.report {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.report h2 { font-size: 1.25rem; margin: 0.4em 0 0.6em; }
+.report h3 { font-size: 1.08rem; margin: 1.4em 0 0.5em; }
+.report h4 { font-size: 1rem; margin: 1.3em 0 0.4em; }
+.report p { margin: 0.55em 0; }
+.report ul { margin: 0.5em 0; padding-left: 1.3em; }
+.report a { color: var(--accent-text); }
+.report hr { border: none; border-top: 1px solid var(--border); margin: 1.2em 0; }
+.report-table-wrap { overflow-x: auto; margin: 0.8em 0; }
+.report-table { border-collapse: collapse; min-width: 420px; font-size: 0.92rem; }
+.report-table th, .report-table td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+.report-table th { background: var(--surface-muted); }
+@media (max-width: 600px) {
+  .report { padding: 14px; }
+}
