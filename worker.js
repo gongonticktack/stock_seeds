@@ -75,9 +75,12 @@ async function handleSectorStats() {
       "/rest/v1/sector_stats?select=market,sector_key,sector_name,as_of,close,ret_1w,ret_2w,ret_1m,ret_3m,rel_1m,rel_3m,closes"
     );
     const benchmarks = {};
+    const outlook = {};
     const sectors = [];
     for (const r of rows) {
-      if (r.sector_key === "__benchmark__") {
+      if (r.sector_key === "__outlook__") {
+        outlook[r.market] = r.closes || [];
+      } else if (r.sector_key === "__benchmark__") {
         benchmarks[r.market] = {
           name: r.sector_name,
           as_of: r.as_of,
@@ -89,7 +92,7 @@ async function handleSectorStats() {
         sectors.push(r);
       }
     }
-    return json({ benchmarks, sectors }, 200, {
+    return json({ benchmarks, sectors, outlook }, 200, {
       "cache-control": "public, s-maxage=300, stale-while-revalidate=60",
     });
   } catch (e) {

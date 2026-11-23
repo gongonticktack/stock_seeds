@@ -55,7 +55,24 @@ function sectorCard(s, extra) {
     "</article>";
 }
 
-// 「次に来そうなテーマ」のルールベース推論
+// 「次に来そうなテーマ」の未来予想カード（相場観ベース、__outlook__ 行から表示）
+function outlookCard(o, sector) {
+  let html = '<article class="stats-card outlook-card">' +
+    '<div class="stats-card-head"><h3 class="stats-card-name">' + o.sector_name + "</h3>" +
+    (o.horizon ? '<span class="stats-card-sym">' + o.horizon + "</span>" : "") + "</div>";
+  if (sector && sector.closes) {
+    html += sparkline(sector.closes, sector.ret_3m >= 0) +
+      '<div class="stats-chips">' +
+      chip("1週", sector.ret_1w) + chip("1ヶ月", sector.ret_1m) + chip("3ヶ月", sector.ret_3m) + chip("対ベンチ比", sector.rel_1m) +
+      "</div>";
+  }
+  html += '<p class="stats-card-reason">' + o.thesis + "</p>";
+  if (o.risk) html += '<p class="stats-card-risk">外れる筋：' + o.risk + "</p>";
+  html += "</article>";
+  return html;
+}
+
+// ルールベース推論（予想データが無いときの予備）
 function inferNext(sectors) {
   const scored = [];
   for (const s of sectors) {
@@ -145,10 +162,18 @@ function render(market) {
   document.getElementById("bar-chart").innerHTML = barChart(sectors);
   document.getElementById("heat-table").innerHTML = heatTable(sectors);
 
-  const next = inferNext(sectors);
-  document.getElementById("next-cards").innerHTML = next.length
-    ? next.map((n) => sectorCard(n.s, n.reasons.join(" "))).join("")
-    : '<p class="stats-note">現在の相場では、短期モメンタムの反転やベンチマーク比の改善が見られるテーマはありません。</p>';
+  const outlook = (STATS.outlook && STATS.outlook[market]) || null;
+  if (outlook && outlook.length) {
+    const byKey = {};
+    for (const s of sectors) byKey[s.sector_key] = s;
+    document.getElementById("next-cards").innerHTML =
+      outlook.map((o) => outlookCard(o, byKey[o.sector_key])).join("");
+  } else {
+    const next = inferNext(sectors);
+    document.getElementById("next-cards").innerHTML = next.length
+      ? next.map((n) => sectorCard(n.s, n.reasons.join(" "))).join("")
+      : '<p class="stats-note">現在の相場では、短期モメンタムの反転やベンチマーク比の改善が見られるテーマはありません。</p>';
+  }
 }
 
 async function init() {

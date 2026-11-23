@@ -890,6 +890,11 @@ footer {
   border-radius: 8px;
   padding: 8px 10px;
 }
+.stats-card-risk {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
 .stats-barchart { margin-bottom: 16px; overflow-x: auto; }
 .stats-bars { width: 100%; min-width: 520px; display: block; }
 .stats-bars .bar-pos { fill: var(--light); }
