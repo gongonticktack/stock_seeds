@@ -897,6 +897,7 @@ footer {
 .stats-bars .stats-zero { stroke: var(--border); stroke-width: 1; }
 .stats-bar-label { fill: var(--text); font-size: 12px; }
 .stats-bar-val { fill: var(--text); font-size: 12px; font-weight: 700; }
+.stats-bar-val-in { fill: var(--surface); font-size: 12px; font-weight: 700; }
 .stats-heat td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
 .stats-note { color: var(--muted); font-size: 0.82rem; margin-top: 10px; }
 @media (max-width: 560px) {

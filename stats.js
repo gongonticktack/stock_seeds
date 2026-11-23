@@ -99,7 +99,12 @@ function barChart(sectors) {
     const cls = v >= 0 ? "bar-pos" : "bar-neg";
     svg += '<text x="' + (labelW - 8) + '" y="' + (y + 13) + '" class="stats-bar-label" text-anchor="end">' + s.sector_name + "</text>";
     svg += '<rect x="' + x.toFixed(1) + '" y="' + y + '" width="' + Math.max(bw, 1).toFixed(1) + '" height="17" rx="3" class="' + cls + '"></rect>';
-    svg += '<text x="' + (v >= 0 ? zeroX + bw + 6 : zeroX - bw - 6) + '" y="' + (y + 13) + '" class="stats-bar-val" text-anchor="' + (v >= 0 ? "start" : "end") + '">' + fmtPct(s.ret_1m) + "</text>";
+    if (v < 0 && zeroX - bw - 6 < labelW + 2) {
+      // バーが長く名前ラベルに重なる場合はバー内側に白文字で表示
+      svg += '<text x="' + (x + 6) + '" y="' + (y + 13) + '" class="stats-bar-val-in" text-anchor="start">' + fmtPct(s.ret_1m) + "</text>";
+    } else {
+      svg += '<text x="' + (v >= 0 ? zeroX + bw + 6 : zeroX - bw - 6) + '" y="' + (y + 13) + '" class="stats-bar-val" text-anchor="' + (v >= 0 ? "start" : "end") + '">' + fmtPct(s.ret_1m) + "</text>";
+    }
   });
   return svg + "</svg>";
 }
