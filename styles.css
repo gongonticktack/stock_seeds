@@ -788,6 +788,14 @@ footer {
 .market-cal-cell.weekend { background: var(--surface-muted); }
 .market-cal-cell.today { outline: 2px solid var(--main); outline-offset: -1px; }
 .market-cal-day { font-size: 0.85rem; font-weight: 600; }
+.market-cal-cell.has-report { cursor: pointer; }
+.market-cal-cell.has-report:hover { border-color: var(--main); }
+.market-cal-cell.has-report .market-cal-day {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+.market-cal-cell.selected { outline: 2px solid var(--accent); outline-offset: -1px; }
 .cal-badge {
   font-style: normal;
   font-size: 0.68rem;

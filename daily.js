@@ -96,6 +96,8 @@ function renderMarkdown(md) {
 }
 
 async function loadReport(date) {
+  selectedReportDate = date;
+  if (typeof renderCalendar === "function") renderCalendar();
   reportEl.innerHTML = "";
   showStatus("読み込み中…");
   try {
@@ -124,11 +126,13 @@ async function init() {
       (latest.tickers || []).length;
 
     for (const r of reports) {
+      reportDates.add(r.report_date);
       const opt = document.createElement("option");
       opt.value = r.report_date;
       opt.textContent = r.title || r.report_date;
       dateSelect.appendChild(opt);
     }
+    if (typeof renderCalendar === "function") renderCalendar();
     dateSelect.value = latest.report_date;
     dateSelect.addEventListener("change", () => loadReport(dateSelect.value));
     loadReport(latest.report_date);
@@ -237,6 +241,8 @@ const MARKET_HOLIDAYS = {
 const calTitle = document.getElementById("cal-title");
 const calGrid = document.getElementById("cal-grid");
 const calNote = document.getElementById("cal-note");
+const reportDates = new Set();
+let selectedReportDate = null;
 const nowJst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
 let calYear = nowJst.getFullYear();
 let calMonth = nowJst.getMonth();
@@ -256,15 +262,27 @@ function renderCalendar() {
     const classes = ["market-cal-cell"];
     if (dow === 0 || dow === 6) classes.push("weekend");
     if (key === todayKey) classes.push("today");
+    const hasReport = reportDates.has(key);
+    if (hasReport) classes.push("has-report");
+    if (hasReport && key === selectedReportDate) classes.push("selected");
     let badges = "";
     if (h.jp) { badges += '<i class="cal-badge jp">日</i>'; notes.push(`${d}日 日本：${h.jp}`); }
     if (h.us) { badges += '<i class="cal-badge us">米</i>'; notes.push(`${d}日 米国：${h.us}`); }
     if (h.usEarly) { badges += '<i class="cal-badge early">短</i>'; notes.push(`${d}日 米国：短縮取引（${h.usEarly}）`); }
-    html += `<div class="${classes.join(" ")}"><span class="market-cal-day">${d}</span>${badges}</div>`;
+    const dateAttr = hasReport ? ` data-date="${key}" title="この日の日報を表示"` : "";
+    html += `<div class="${classes.join(" ")}"${dateAttr}><span class="market-cal-day">${d}</span>${badges}</div>`;
   }
   calGrid.innerHTML = html;
   calNote.textContent = notes.length ? notes.join(" ／ ") : "この月の平日休場日はありません。";
 }
+
+calGrid.addEventListener("click", (event) => {
+  const cell = event.target.closest(".market-cal-cell.has-report");
+  if (!cell || !cell.dataset.date) return;
+  dateSelect.value = cell.dataset.date;
+  loadReport(cell.dataset.date);
+  reportEl.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 document.getElementById("cal-prev").addEventListener("click", () => {
   calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar();
