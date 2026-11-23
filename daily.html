@@ -42,6 +42,24 @@
     <div class="summary-item"><span class="summary-num" id="count-tickers">–</span><span class="summary-label">掲載銘柄</span></div>
   </section>
 
+  <section class="market-cal" aria-label="日米市場の休場日カレンダー">
+    <div class="market-cal-head">
+      <button type="button" class="market-cal-nav" id="cal-prev" aria-label="前の月">‹</button>
+      <h2 class="market-cal-title" id="cal-title">–</h2>
+      <button type="button" class="market-cal-nav" id="cal-next" aria-label="次の月">›</button>
+    </div>
+    <div class="market-cal-week" aria-hidden="true">
+      <span class="sun">日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span class="sat">土</span>
+    </div>
+    <div class="market-cal-grid" id="cal-grid"></div>
+    <div class="market-cal-legend">
+      <span><i class="cal-badge jp">日</i>日本株 休場</span>
+      <span><i class="cal-badge us">米</i>米国株 休場</span>
+      <span><i class="cal-badge early">短</i>米国株 短縮取引</span>
+    </div>
+    <p class="market-cal-note" id="cal-note"></p>
+  </section>
+
   <section class="controls" aria-label="日付の選択">
     <select id="date-select" aria-label="日付を選択"></select>
   </section>

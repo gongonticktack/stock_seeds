@@ -728,3 +728,99 @@ footer {
 @media (max-width: 600px) {
   .report { padding: 14px; }
 }
+
+/* 日米市場 休場日カレンダー（日報ページ上部） */
+.market-cal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px 12px;
+  margin-bottom: 16px;
+}
+.market-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.market-cal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+.market-cal-nav {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  width: 36px;
+  height: 32px;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.market-cal-nav:hover { background: var(--surface-muted); }
+.market-cal-week,
+.market-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.market-cal-week span {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding: 2px 0;
+}
+.market-cal-week .sun { color: var(--accent-text); }
+.market-cal-week .sat { color: var(--main); }
+.market-cal-cell {
+  min-height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-start;
+}
+.market-cal-cell.empty { border-color: transparent; }
+.market-cal-cell.weekend { background: var(--surface-muted); }
+.market-cal-cell.today { outline: 2px solid var(--main); outline-offset: -1px; }
+.market-cal-day { font-size: 0.85rem; font-weight: 600; }
+.cal-badge {
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 1px 5px;
+  line-height: 1.5;
+}
+.cal-badge.jp { background: var(--accent-text); color: #fff; }
+.cal-badge.us { background: var(--main); color: #fff; }
+.cal-badge.early {
+  background: transparent;
+  color: var(--main);
+  border: 1px solid var(--main);
+  padding: 0 4px;
+}
+.market-cal-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.market-cal-legend .cal-badge { margin-right: 5px; }
+.market-cal-note {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .market-cal-cell { min-height: 44px; padding: 3px 4px; }
+  .market-cal-day { font-size: 0.78rem; }
+  .cal-badge { font-size: 0.62rem; padding: 0 4px; }
+}
