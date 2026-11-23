@@ -235,6 +235,17 @@ const PHOTO_URLS = {
   "9948": "https://news.shoninsha.co.jp/wp-content/uploads/2019/04/ralse_20190412_01.png",
   "4666": "https://cdn-webcartop.com/wp-content/uploads/2021/04/webcartop_newcar_011.jpg",
   "2818": "https://www.pietro.co.jp/assets/upload/product/20260105_DS.jpg",
+  "4765": "https://sbisec.akamaized.net/sbisec/images/base/yutai/4765-1.jpg", // SBIグローバルアセット：優待のXRPイメージ（SBI証券）
+  "7326": "https://www.sbisonpo.co.jp/common/images/og-image.png", // SBIインシュアランスG：グループ中核のSBI損保
+  "8303": "https://sbisec.akamaized.net/sbisec/images/base/yutai/8303-1.jpg", // SBI新生銀行：優待イメージ（SBI証券）
+  "5834": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Bitcoin_%28BTC%29_and_Ripple_%28XRP%29_drinks.jpg/960px-Bitcoin_%28BTC%29_and_Ripple_%28XRP%29_drinks.jpg", // SBIリーシング：優待のXRP関連写真（Wikimedia Commons）
+  "8473": "https://sbisec.akamaized.net/sbisec/images/base/yutai/8473-1.jpg", // SBIホールディングス：優待のXRPイメージ（SBI証券）
+  "7198": "https://www.sbiaruhi.co.jp/assets/img/common/ARUHI_FB_logo.jpg", // SBIアルヒ：公式ロゴ
+  "3696": "https://sbisec.akamaized.net/sbisec/images/base/yutai/3696-1.jpg", // セレス：優待の暗号資産イメージ（SBI証券）
+  "8946": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/4X-BNB_Micha.jpg/960px-4X-BNB_Micha.jpg", // ASIAN STAR：優待のBNBコイン写真（Wikimedia Commons）
+  "3350": "https://metaplanet.jp/og-image.jpg", // メタプラネット：公式OGP
+  "3664": "https://wize-inc.jp/wp-content/themes/wize/assets/img/ogp.jpg", // WIZE：公式OGP
+  "6574": "https://sbisec.akamaized.net/sbisec/images/base/yutai/6574-1.jpg", // コンヴァノ：優待イメージ（SBI証券）
 };
 
 // カード見出し用の短いタイトル（「100株で〜」の詳細は折りたたみの中に表示）
@@ -339,6 +350,17 @@ const SHORT_TITLES = {
   "9948": "選べる優待（りんご等）",
   "4666": "カーシェア入会特典",
   "2818": "ドレッシング詰め合わせ",
+  "4765": "XRP 2,500円相当",
+  "7326": "XRP 2,500円相当",
+  "8303": "XRP 2,000円相当か健康食品",
+  "5834": "XRP 2,000円相当",
+  "8473": "XRP 2,000円相当",
+  "7198": "XRP 500円相当",
+  "3696": "ETH等 2,500円相当",
+  "8946": "BNB 総額800万円分を按分",
+  "3350": "BTC抽選（総額2,000万円）",
+  "3664": "SOLと交換できるチケット",
+  "6574": "BTC年2,000円相当＋ネイル無料券",
 };
 
 function deriveShortTitle(benefit) {
