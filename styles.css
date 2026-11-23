@@ -479,6 +479,17 @@ footer {
   color: var(--main);
 }
 
+@media (max-width: 600px) {
+  .page-nav { gap: 6px; flex-wrap: nowrap; }
+  .page-nav-link {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding: 6px 4px;
+  }
+}
+
 /* 株主優待カード — 「何がもらえるか」を最上段に大きく出す */
 .ycards {
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -902,6 +913,11 @@ footer {
   margin: 8px 0 0;
   font-size: 0.8rem;
   color: var(--muted);
+}
+.stats-card-related {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--text);
 }
 .stats-mkt-badge {
   display: inline-block;

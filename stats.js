@@ -70,7 +70,7 @@ function sectorCard(s, extra) {
 // 「次に来そうなテーマ」の未来予想カード（相場観ベース、__outlook__ 行から表示）
 function outlookCard(o, sector, market) {
   let html = '<article class="stats-card outlook-card">' +
-    '<div class="stats-card-head"><h3 class="stats-card-name">' + mktBadge(market) + o.sector_name + "</h3>" +
+    '<div class="stats-card-head"><h3 class="stats-card-name">' + mktBadge(market) + (o.theme || o.sector_name) + "</h3>" +
     (o.horizon ? '<span class="stats-card-sym">' + o.horizon + "</span>" : "") + "</div>";
   if (sector && sector.closes) {
     html += sparkline(sector.closes, sector.ret_3m >= 0) +
@@ -79,6 +79,7 @@ function outlookCard(o, sector, market) {
       "</div>";
   }
   html += '<p class="stats-card-reason">' + o.thesis + "</p>";
+  if (o.related) html += '<p class="stats-card-related">関連銘柄：' + o.related + "</p>";
   if (o.risk) html += '<p class="stats-card-risk">外れる筋：' + o.risk + "</p>";
   html += "</article>";
   return html;
